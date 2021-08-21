@@ -1,0 +1,68 @@
+{% extends "calibration/base.html" %}
+
+{% block body %}
+<div class="container">
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissable fade show mt-1" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endfor %}
+    {% endif %}
+    <div class="card text-center mt-3">
+        <div class="card-header">
+            <h4>Currently Available</h4>
+        </div>
+        {% for coffee in coffees %}
+        <button class="btn btn-sm btn-info mb-2 mt-1" type="button" data-toggle="collapse"
+            data-target="#coffeeCollapse-{{coffee.id}}" aria-expanded="false"
+            aria-controls="coffeeCollapse-{{ coffee.id }}">
+            {{ coffee.name }}
+            {% if coffee.is_guest %}
+            <p> <small>{{ current_month }}'s guest </small> </p>
+            {% endif %}
+        </button>
+        <div class="collapse" id="coffeeCollapse-{{ coffee.id }}">
+            <div class="card card-body mb-2 mt-1">
+                <p class="border rounded">Origin: {{ coffee.origin }}</p>
+                <p class="border rounded">Traceability: {{ coffee.traceability }}</p>
+                <p class="border rounded">Process: {{ coffee.process }}</p>
+                <p class="border rounded">Roast Profile: {{ coffee.roast_profile }}</p>
+                <p class="border rounded">Tasting notes: {{ coffee.taste_profile }}</p>
+                <div class="card-footer text-muted">
+                    Category: {{ coffee.display_category }}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <hr>
+
+    <div class="card text-center mt-3">
+        <div class="card-header">
+            <h4>Espresso Logs</h4>
+        </div>
+        {% for espresso_log in espresso_logs %}
+        <button class="btn btn-sm btn-info mb-2 mt-1" type="button" data-toggle="collapse"
+            data-target="#espressoLog-{{ espresso_log.id }}" aria-expanded="false"
+            aria-controls="coffeeCollapse-{{ coffee.id }}">
+            Log #: {{ espresso_log.id }}/ Date: {{ espresso_log.timestamp }}
+        </button>
+        <div class="collapse" id="espressoLog-{{ espresso_log.id }}">
+            <div class="card card-body mb-2 mt-1">
+                <p class="border rounded">{{ espresso_log.coffee_name }}</p>
+                <p class="border rounded">Recipe: {{ espresso_log.dry_weight }} - {{ espresso_log.wet_weight }}</p>
+                <p class="border rounded">{{ espresso_log.notes }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+
+
+
+</div>
+{% endblock %}
