@@ -12,7 +12,7 @@ from .forms import EspressoForm
 # Create your views here.
 def index(request):
     coffees = Coffee.objects.all()
-    espresso_logs = Espresso.objects.all()
+    espresso_logs = Espresso.objects.all().order_by("-timestamp")
     month = datetime.datetime.now()
     current_month = month.strftime("%B")
     context = {
