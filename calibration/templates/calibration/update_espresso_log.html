@@ -1,0 +1,27 @@
+{% extends "calibration/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %} Update Log {% endblock %}
+
+{% block body %}
+    <div class="container">
+
+        <div class="card text-center mt-3">
+            <div class="card-header">
+                <h4>Update Espresso Log</h4>
+            </div>
+            <div class="card-body">
+                <form action="" method ="POST">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <button class="btn btn-sm btn-primary mb-2">Update</button>
+                </form>
+                <div class="card-footer text-muted">
+                    <a href="{% url 'index' %}">Go back</a>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+{% endblock %}

@@ -3,6 +3,8 @@ from django.db import IntegrityError
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.views.generic.edit import UpdateView
+from django.contrib.messages.views import SuccessMessageMixin
 from .models import User, Coffee, Espresso
 import datetime
 from .forms import EspressoForm
@@ -10,7 +12,7 @@ from .forms import EspressoForm
 # Create your views here.
 def index(request):
     coffees = Coffee.objects.all()
-    espresso_logs = Espresso.objects.all().order_by("-timestamp")
+    espresso_logs = Espresso.objects.all()
     month = datetime.datetime.now()
     current_month = month.strftime("%B")
     context = {
@@ -110,8 +112,14 @@ def espresso_log(request):
         else:
             return render(request, "calibration/espresso_log.html", {"form": EspressoForm()})
         
-
+class UpdateEpsressoLog(SuccessMessageMixin, UpdateView):
+    model = Espresso
+    template_name = "calibration/update_espresso_log.html"
+    fields = "__all__"
+    success_message = "Log successfully updated" 
+    success_url = "/"
     
+
 
 
 
