@@ -10,4 +10,5 @@ urlpatterns = [
     path("profile/<int:user_id>/", views.profile, name="profile"),
     path("espresso_log", views.espresso_log, name="espresso_log"),
     path("edit/<int:pk>", UpdateEpsressoLog.as_view(), name="edit"),
+    path("filter_log", views.filter_log, name="filter_log"),
 ]

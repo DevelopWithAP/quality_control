@@ -71,28 +71,26 @@
         <div class="card-header">
             <h4>
             Filter
-            <a href="#" class="btn btn-sm btn-primary ml-3">Add</a>
+            <a href="{% url 'filter_log' %}" class="btn btn-sm btn-primary ml-3">Add</a>
             </h4>
         </div>
-        <!--
-        {% for espresso_log in espresso_logs %}
+        
+        {% for filter_log in filter_logs %}
         <button class="btn btn-sm btn-default mb-2 mt-1" type="button" data-toggle="collapse"
-            data-target="#espressoLog-{{ espresso_log.id }}" aria-expanded="false"
+            data-target="#filterLog-{{ filter_log.id }}" aria-expanded="false"
             aria-controls="coffeeCollapse-{{ coffee.id }}">
-            Date: {{ espresso_log.timestamp }}
+            Date: {{ filter_log.timestamp }}
         </button>
-        <div class="collapse" id="espressoLog-{{ espresso_log.id }}">
+        <div class="collapse" id="filterLog-{{ filter_log.id }}">
             <div class="card card-body mb-2 mt-1">
-                <p class="border rounded">{{ espresso_log.coffee_name }}</p>
-                <p class="border rounded">Recipe: {{ espresso_log.dry_weight }} - {{ espresso_log.wet_weight }}</p>
-                <p class="border rounded">{{ espresso_log.notes }}</p>
+                <p class="border rouded">{{ filter_log.coffee_name }}</p>
                 <div class="card-footer text-muted">
-                    <a href="{% url 'edit' espresso_log.id %}" class="btn btn-sm btn-primary">Edit</a>
+                    <a href="#" class="btn btn-sm btn-primary">Edit</a>
                 </div>
             </div>
         </div>
         {% endfor %}
-     </div> -->
+     </div>
 
 
 

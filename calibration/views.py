@@ -5,20 +5,22 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.views.generic.edit import UpdateView
 from django.contrib.messages.views import SuccessMessageMixin
-from .models import User, Coffee, Espresso
+from .models import User, Coffee, Espresso, Filter
 import datetime
-from .forms import EspressoForm
+from .forms import EspressoForm, FilterForm
 
 # Create your views here.
 def index(request):
     coffees = Coffee.objects.all()
     espresso_logs = Espresso.objects.all().order_by("-timestamp")
+    filter_logs = Filter.objects.all().order_by("-timestamp")
     month = datetime.datetime.now()
     current_month = month.strftime("%B")
     context = {
         "coffees": coffees,
         "current_month": current_month,
-        "espresso_logs": espresso_logs
+        "espresso_logs": espresso_logs,
+        "filter_logs": filter_logs,
     }
     return render(request, "calibration/index.html", context)
 
@@ -120,7 +122,25 @@ class UpdateEpsressoLog(SuccessMessageMixin, UpdateView):
     success_url = "/"
     
 
+@login_required
+def filter_log(request):
+    context = {
+        "form": FilterForm()
+    }
+    if request.method == "GET":
+        return render(request, "calibration/filter_log.html", context)
+    else:
+        form = FilterForm(request.POST)
+        user = User.objects.get(id=request.user.id)
 
+        if form.is_valid():
+            filter_obj = form.save(commit=False)
+            filter_obj.save()
+            filters = Filter.objects.all()
+            messages.success(request, "Log added successfully")
+            return redirect("index")
+        else:
+            return render(request, "calibration/filter_log.html", {"form": FilterForm()})
 
 
 

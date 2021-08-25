@@ -102,6 +102,10 @@ GENERAL = (
     ("Medium-High", "Medium-High"),
     ("High", "High"),
 )
+METHOD = (
+    ("Batch", "Batch"),
+    ("v60", "v60"),
+)
 
 # Create your models here.
 class User(AbstractUser):
@@ -157,3 +161,32 @@ class Espresso(models.Model):
 
     def __str__(self):
         return f"Log: {self.id} added on {self.timestamp.strftime('%d %B %Y %H:%M')}"
+
+class Filter(models.Model):
+    coffee_name = models.ForeignKey(Coffee, on_delete=models.CASCADE, related_name="filter_coffee_name", limit_choices_to={"roast_profile": "Filter"})
+    batch_number = models.CharField(max_length = 8)
+    method = models.CharField(max_length=5, choices=METHOD, default="Batch")
+    timestamp = models.DateTimeField(auto_now_add=True)
+    water_temperature = models.DecimalField(max_digits=2, decimal_places=0)
+    water_tds = models.DecimalField(max_digits=3, decimal_places=1)
+    grind_size = models.DecimalField(max_digits=3, decimal_places=1)
+    recipe = models.TextField()
+    acidity_score = models.FloatField(validators=[MinValueValidator(6), MaxValueValidator(10)])
+    acidity_quality = models.CharField(max_length= 15,choices=ACIDITY, default = "Delicate")
+    aroma = models.CharField(max_length=15, choices=AROMAS, default="Berry")
+    flavour_score = models.FloatField(validators=[MinValueValidator(6), MaxValueValidator(10)])
+    flavour_quality = models.CharField(max_length=15, choices = FLAVOUR, default="Sweet")
+    texture = models.CharField(max_length=15, choices = GENERAL, default="Medium")
+    texture_quality = models.CharField(max_length=15, choices=TEXTURE, default="Velvety")
+    balance = models.CharField(max_length=15, choices=GENERAL, default="Medium")
+    sweetness = models.CharField(max_length=15, choices=GENERAL, default="Medium")
+    bitterness = models.CharField(max_length=15, choices=GENERAL, default="Medium")
+    body = models.CharField(max_length=15, choices=GENERAL, default="Medium")
+    finish = models.CharField(max_length=15, choices=FINISH, default="Lingering")
+    notes = models.TextField(null=True, blank=True)
+
+    def __str__(self):
+        return f"Log: {self.id} added on {self.timestamp.strftime('%d %B %Y %H:%M')}"
+
+
+
