@@ -58,7 +58,7 @@
             <div class="card card-body mb-2 mt-1">
                 <p class="border rounded">{{ espresso_log.coffee_name }}</p>
                 <p class="border rounded">Recipe: {{ espresso_log.dry_weight }} - {{ espresso_log.wet_weight }}</p>
-                <p class="border rounded">{{ espresso_log.notes }}</p>
+                <p class="border rounded">Notes: {{ espresso_log.notes }}</p>
                 <div class="card-footer text-muted">
                     <a href="{% url 'edit' espresso_log.id %}" class="btn btn-sm btn-primary">Edit</a>
                 </div>
@@ -83,7 +83,10 @@
         </button>
         <div class="collapse" id="filterLog-{{ filter_log.id }}">
             <div class="card card-body mb-2 mt-1">
-                <p class="border rouded">{{ filter_log.coffee_name }}</p>
+                <p class="border rounded">{{ filter_log.coffee_name }}</p>
+                <p class="border rounded">Method: {{ filter_log.method }}</p>
+                <p class="border rounded">Notes: {{ filter_log.notes }}</p>
+                <p class="border rounded">Recipe: {{ filter_log.recipe }}</p>
                 <div class="card-footer text-muted">
                     <a href="#" class="btn btn-sm btn-primary">Edit</a>
                 </div>
