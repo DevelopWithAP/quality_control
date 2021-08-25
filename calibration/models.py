@@ -130,14 +130,20 @@ class Coffee(models.Model):
     def display_category(self):
         return str(self.get_category_display())
 
+    # method to display roast profile of coffee
+    def display_roast_profile(self):
+        if "spr" in str(self.roast_profile):
+            return "Espresso"
+        return "Filter"
+
 class Espresso(models.Model):
     coffee_name = models.ForeignKey(Coffee, on_delete=models.CASCADE, related_name="coffee_name")
     timestamp = models.DateTimeField(auto_now_add=True)
     water_temp = models.DecimalField(max_digits=3, decimal_places=1)
     water_tds = models.DecimalField(max_digits=3, decimal_places=2)
     batch_number = models.CharField(max_length=8)
-    dry_weight = models.DecimalField(max_digits=3, decimal_places=1)
-    wet_weight = models.IntegerField()
+    dry_weight = models.DecimalField(max_digits=3, decimal_places=1, default=18.0)
+    wet_weight = models.IntegerField(default=36)
     extraction_time = models.CharField(max_length=10, default="26-28")
     acidity_score = models.FloatField(validators=[MinValueValidator(6), MaxValueValidator(10)])
     acidity_quality = models.CharField(max_length= 15,choices=ACIDITY, default = "Delicate")

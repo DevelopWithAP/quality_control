@@ -43,13 +43,16 @@
 
     <div class="card text-center mt-3">
         <div class="card-header">
-            <h4>Espresso Logs</h4>
+            <h4>
+            Espresso
+            <a href="{% url 'espresso_log' %}" class="btn btn-sm btn-primary ml-3">Add</a>
+            </h4>
         </div>
         {% for espresso_log in espresso_logs %}
         <button class="btn btn-sm btn-default mb-2 mt-1" type="button" data-toggle="collapse"
             data-target="#espressoLog-{{ espresso_log.id }}" aria-expanded="false"
             aria-controls="coffeeCollapse-{{ coffee.id }}">
-            Log #: {{ espresso_log.id }}/ Date: {{ espresso_log.timestamp }}
+            Date: {{ espresso_log.timestamp }}
         </button>
         <div class="collapse" id="espressoLog-{{ espresso_log.id }}">
             <div class="card card-body mb-2 mt-1">
@@ -57,12 +60,39 @@
                 <p class="border rounded">Recipe: {{ espresso_log.dry_weight }} - {{ espresso_log.wet_weight }}</p>
                 <p class="border rounded">{{ espresso_log.notes }}</p>
                 <div class="card-footer text-muted">
-                    <a href="{% url 'edit' espresso_log.id %}">Edit</a>
+                    <a href="{% url 'edit' espresso_log.id %}" class="btn btn-sm btn-primary">Edit</a>
                 </div>
             </div>
         </div>
         {% endfor %}
     </div>
+
+    <div class="card text-center mt-3">
+        <div class="card-header">
+            <h4>
+            Filter
+            <a href="#" class="btn btn-sm btn-primary ml-3">Add</a>
+            </h4>
+        </div>
+        <!--
+        {% for espresso_log in espresso_logs %}
+        <button class="btn btn-sm btn-default mb-2 mt-1" type="button" data-toggle="collapse"
+            data-target="#espressoLog-{{ espresso_log.id }}" aria-expanded="false"
+            aria-controls="coffeeCollapse-{{ coffee.id }}">
+            Date: {{ espresso_log.timestamp }}
+        </button>
+        <div class="collapse" id="espressoLog-{{ espresso_log.id }}">
+            <div class="card card-body mb-2 mt-1">
+                <p class="border rounded">{{ espresso_log.coffee_name }}</p>
+                <p class="border rounded">Recipe: {{ espresso_log.dry_weight }} - {{ espresso_log.wet_weight }}</p>
+                <p class="border rounded">{{ espresso_log.notes }}</p>
+                <div class="card-footer text-muted">
+                    <a href="{% url 'edit' espresso_log.id %}" class="btn btn-sm btn-primary">Edit</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+     </div> -->
 
 
 
