@@ -108,7 +108,6 @@ def espresso_log(request):
         if form.is_valid():
             espresso = form.save(commit=False)
             espresso.save()
-            espressos = Espresso.objects.all()
             messages.success(request, "Log added successfully")
             return redirect("index")
         else:
