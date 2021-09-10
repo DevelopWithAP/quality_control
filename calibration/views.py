@@ -36,7 +36,7 @@ def register(request):
             messages.error(request, "Passwords did not match")
             return redirect("register")
 
-        # Attemp to create User
+        # Attempt to create User
         try:
             user = User.objects.create_user(username, email, password)
             user.save()
@@ -58,7 +58,7 @@ def login_view(request):
             login(request, user)
             return redirect("index")
         else:
-            messages.error(request, "Invalid username and/or password")
+            messages.warning(request, "Invalid username and/or password")
             return redirect("login")
     else:
         return render(request, "calibration/login.html")
@@ -117,7 +117,7 @@ class UpdateEpsressoLog(SuccessMessageMixin, UpdateView):
     model = Espresso
     template_name = "calibration/update_espresso_log.html"
     fields = "__all__"
-    success_message = "Log successfully updated" 
+    success_message = "Update Success" 
     success_url = "/"
     
 
@@ -141,6 +141,12 @@ def filter_log(request):
         else:
             return render(request, "calibration/filter_log.html", {"form": FilterForm()})
 
+class UpdateFilterLog(SuccessMessageMixin, UpdateView):
+    model = Filter
+    template_name = "calibration/update_filter_log.html"
+    fields = "__all__"
+    success_message = "Update Success"
+    success_url = "/"
 
 
 

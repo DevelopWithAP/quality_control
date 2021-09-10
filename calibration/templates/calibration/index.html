@@ -60,7 +60,7 @@
                 <p class="border rounded">Recipe: {{ espresso_log.dry_weight }} - {{ espresso_log.wet_weight }}</p>
                 <p class="border rounded">Notes: {{ espresso_log.notes }}</p>
                 <div class="card-footer text-muted">
-                    <a href="{% url 'edit' espresso_log.id %}" class="btn btn-sm btn-primary">Edit</a>
+                    <a href="{% url 'edit_espresso_log' espresso_log.id %}" class="btn btn-sm btn-primary">Edit</a>
                 </div>
             </div>
         </div>
@@ -88,7 +88,7 @@
                 <p class="border rounded">Notes: {{ filter_log.notes }}</p>
                 <p class="border rounded">Recipe: {{ filter_log.recipe }}</p>
                 <div class="card-footer text-muted">
-                    <a href="#" class="btn btn-sm btn-primary">Edit</a>
+                    <a href="{% url 'edit_filter_log' filter_log.id %}" class="btn btn-sm btn-primary">Edit</a>
                 </div>
             </div>
         </div>
