@@ -5,9 +5,9 @@ class EspressoForm(ModelForm):
     
     class Meta:
         model = Espresso     
-        fields = "__all__"
+        exclude = ["user"]
 
 class FilterForm(ModelForm):
     class Meta: 
         model = Filter
-        fields = "__all__"
+        exclude = ["user"]

@@ -137,6 +137,7 @@ class Coffee(models.Model):
 
 
 class Espresso(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="espresso_log_site", null=True)
     coffee_name = models.ForeignKey(Coffee, on_delete=models.CASCADE, related_name="coffee_name", limit_choices_to={"roast_profile": "Espresso"})
     timestamp = models.DateTimeField(auto_now_add=True)
     water_temp = models.DecimalField(max_digits=3, decimal_places=1)
@@ -164,6 +165,7 @@ class Espresso(models.Model):
 
 class Filter(models.Model):
     coffee_name = models.ForeignKey(Coffee, on_delete=models.CASCADE, related_name="filter_coffee_name", limit_choices_to={"roast_profile": "Filter"})
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="filter_log_site", null=True)
     batch_number = models.CharField(max_length = 8)
     method = models.CharField(max_length=5, choices=METHOD, default="Batch")
     timestamp = models.DateTimeField(auto_now_add=True)

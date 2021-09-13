@@ -107,6 +107,7 @@ def espresso_log(request):
 
         if form.is_valid():
             espresso = form.save(commit=False)
+            epsresso.user = request.user
             espresso.save()
             messages.success(request, "Log added successfully")
             return redirect("index")
@@ -116,7 +117,7 @@ def espresso_log(request):
 class UpdateEpsressoLog(SuccessMessageMixin, UpdateView):
     model = Espresso
     template_name = "calibration/update_espresso_log.html"
-    fields = "__all__"
+    form_class = EspressoForm
     success_message = "Update Success" 
     success_url = "/"
     
@@ -135,6 +136,7 @@ def filter_log(request):
         if form.is_valid():
             filter_obj = form.save(commit=False)
             filter_obj.save()
+            filter_obj.user = request.user
             filters = Filter.objects.all()
             messages.success(request, "Log added successfully")
             return redirect("index")
@@ -144,7 +146,7 @@ def filter_log(request):
 class UpdateFilterLog(SuccessMessageMixin, UpdateView):
     model = Filter
     template_name = "calibration/update_filter_log.html"
-    fields = "__all__"
+    form_class = FilterForm
     success_message = "Update Success"
     success_url = "/"
 
