@@ -127,6 +127,7 @@ class Coffee(models.Model):
     traceability = models.CharField(max_length=60)
     is_house = models.BooleanField(default=True)
     is_guest = models.BooleanField(default=False)
+    is_available = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.name}: {self.origin}, {self.process}, {self.roast_profile}, {self.display_category()}"
