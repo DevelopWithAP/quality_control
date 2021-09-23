@@ -76,23 +76,25 @@ def profile(request, user_id):
         }
         return render(request, "calibration/profile.html", context)
     else:
-        
-        new_username = request.POST["username"]
-        new_email = request.POST["email"]
+        if request.user.is_staff:
+            new_username = request.POST["username"]
+            new_email = request.POST["email"]
 
         #  preserve old field and make sure new fields are not empty stirngs
-        if new_username == "" or new_username == user.username:
-            pass
-        else:
-            user.username = new_username
+            if new_username == "" or new_username == user.username:
+                pass
+            else:
+                user.username = new_username
             
-        if new_email == "" or new_email == user.email:
-            pass
-        else:
-            user.email = new_email
+            if new_email == "" or new_email == user.email:
+                pass
+            else:
+                user.email = new_email
 
-        user.save()
-        return redirect("profile", user_id=user.id)
+            user.save()
+            return redirect("profile", user_id=user.id)
+        else: 
+            return render(request, "calibration/unauthorised_access.html")
 
 @login_required
 def espresso_log(request):
@@ -107,7 +109,7 @@ def espresso_log(request):
 
         if form.is_valid():
             espresso = form.save(commit=False)
-            epsresso.user = request.user
+            espresso.user = request.user
             espresso.save()
             messages.success(request, "Log added successfully")
             return redirect("index")
