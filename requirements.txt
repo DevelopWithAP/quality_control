@@ -13,10 +13,6 @@ Django==3.1.7
 django-crispy-forms==1.11.2
 djangorestframework==3.12.4
 filelock==3.0.12
-Flask==1.1.2
-Flask-Session==0.3.2
-# Editable install with no version control (flaskr==1.1.2)
--e /Users/apostolospapas/flask_tutorial
 gunicorn==20.1.0
 idna==2.10
 iniconfig==1.1.1
@@ -24,13 +20,11 @@ isort==5.7.0
 itsdangerous==1.1.0
 Jinja2==2.11.3
 lazy-object-proxy==1.5.2
-MarkupSafe==1.1.1
 mccabe==0.6.1
 networkx==2.5
 numpy==1.20.2
 packaging==20.9
 pbr==5.6.0
-Pillow==8.1.1
 pipenv==2021.5.29
 pluggy==0.13.1
 psycopg2-binary==2.8.6
@@ -40,15 +34,12 @@ pyparsing==2.4.7
 pytest==6.2.4
 pytz==2021.1
 requests==2.25.1
-selenium==3.141.0
 six==1.16.0
 sqlparse==0.4.1
 stevedore==3.3.0
 toml==0.10.2
-tqdm==4.60.0
 urllib3==1.26.4
 virtualenv==20.4.6
 virtualenv-clone==0.5.4
 virtualenvwrapper==4.8.4
-Werkzeug==1.0.1
 wrapt==1.12.1
