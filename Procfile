@@ -1,0 +1,1 @@
+web: gunicorn quality_control.wsgi
