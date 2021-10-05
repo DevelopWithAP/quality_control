@@ -16,7 +16,9 @@
         <div class="card-header">
             <h4>Currently Available</h4>
         </div>
+        
         {% for coffee in coffees %}
+        {% if coffee.is_available %}
         <button class="btn btn-sm btn-default mb-2 mt-1" type="button" data-toggle="collapse"
             data-target="#coffeeCollapse-{{coffee.id}}" aria-expanded="false"
             aria-controls="coffeeCollapse-{{ coffee.id }}">
@@ -37,6 +39,7 @@
                 </div>
             </div>
         </div>
+        {% endif %}
         {% endfor %}
     </div>
     <hr>

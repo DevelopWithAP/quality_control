@@ -21,12 +21,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = "8e73ab039580f5b0886cef8a99979b0eec67e6b043324f0d"
+# SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = (os.environ.get("DEBUG_VALUE") == "True")
+DEBUG = True
+# DEBUG = (os.environ.get("DEBUG_VALUE") == "True")
 
-ALLOWED_HOSTS = ["developwithap-v1.herokuapp.com"]
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -121,6 +123,6 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+# STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATIC_URL = '/static/'
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
