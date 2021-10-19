@@ -2,6 +2,7 @@
 
 {% block body %}
 <div class="container">
+    {% if user.is_authenticated %}
     {% if messages %}
         {% for message in messages %}
         <div class="alert alert-{{ message.tags }} alert-dismissable fade show mt-1" role="alert">
@@ -97,9 +98,19 @@
         </div>
         {% endfor %}
      </div>
+     {% else %}
+        <div class="card text-center mt-3">
+            <div class="card-header">
+                <h4>Calibration</h4>
+            </div>
+            <div class="card card-body mb-2 mt-1">
+                <p>You dial-in logs on one place</p>  
+            </div>
+            <div class="card-footer">
+                Log in or Register.
+            </div>
+        </div>     
 
-
-
-
+     {% endif %}
 </div>
 {% endblock %}
